@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Curso de Buceo Científico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Narrative Plan Summary:
+        1. Hero Section: Course Title, Slogan, Key Dates, Stylized "Logos" (UCO, UTH, CMAS).
+        2. The Opportunity: Highlights scarcity in Spain, CMAS recognition, UCO-UTH collaboration, privileged location (Utila), and a "Big Number" statistic.
+        3. What You Will Become: Focus on CMAS Scientific Diver (CSD) certification, list key skills acquired (using Unicode icons), and a simple HTML/CSS flowchart for progression.
+        4. Course Breakdown: Details like duration, ECTS, total hours (with a Chart.js Donut Chart for distribution), location, class size, and language.
+        5. Curriculum Highlights: Overview of theoretical and practical phases, mention of specialized equipment, ecological value focus, and an HTML/CSS timeline of the course.
+        6. Meet Your Instructors: Names and brief expertise of the key instructors.
+        7. Who Is This For? (Admission Requirements): List of prerequisites using an HTML/CSS checklist style.
+        8. Invest in Your Future (Price & Enrollment): Clear presentation of the course price, enrollment period, and a Call to Action.
+        9. Partners & Accreditation: Showcase collaborating institutions (UCO, UTH, CMAS, Utila Water Sports, Club Buceo Córdoba) using stylized text/HTML.
+        10. Footer: Placeholder for contact information and copyright.
+    -->
+    <!-- Visualization Choices Summary:
+        - Hero "Logos" (UCO, UTH, CMAS): Goal: Inform. Viz: Styled HTML Text. Justification: Branding without SVG. Method: HTML/CSS. NO SVG.
+        - "1 of Few..." Statistic (The Opportunity): Goal: Inform. Viz: Large HTML Text ("Single Big Number"). Justification: High impact for a key fact. Method: HTML/CSS. NO SVG.
+        - Key Skills List with Icons (What You Will Become): Goal: Inform/Organize. Viz: HTML List with Unicode characters. Justification: Clear, scannable, visually appealing. Method: HTML/Unicode. NO SVG.
+        - Progression Flowchart (What You Will Become): Goal: Organize. Viz: Structured HTML/CSS with Tailwind for boxes and arrows. Justification: Illustrates the learning path. Method: HTML/CSS. NO SVG, NO MERMAID JS.
+        - Hour Distribution Chart (Course Breakdown): Goal: Compare/Inform. Viz: Chart.js Donut Chart. Justification: Effectively shows proportions of learning hours. Method: Chart.js (Canvas). NO SVG.
+        - Course Timeline (Curriculum Highlights): Goal: Change/Organize. Viz: Structured HTML/CSS with Tailwind to create a timeline. Justification: Visualizes the course schedule and phases. Method: HTML/CSS. NO SVG, NO MERMAID JS.
+        - Admission Requirements Checklist (Who Is This For?): Goal: Inform/Organize. Viz: HTML List with Unicode checkmarks. Justification: Easy-to-digest list of prerequisites. Method: HTML/Unicode. NO SVG.
+        - Partner "Logos" (Partners & Accreditation): Goal: Inform. Viz: Styled HTML Text. Justification: Branding without SVG. Method: HTML/CSS. NO SVG.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F8FF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* Elimina el espacio entre las celdas */
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            /* Añade un borde a las celdas */
+            padding: 8px;
+            /* Espacio interno de las celdas */
+            text-align: left;
+            /* Alinea el texto a la izquierda */
+        }
+
+        th {
+            background-color: #f2f2f2;
+            /* Color de fondo para los encabezados */
+        }
+
+        tr:nth-child(even) {
+            /* Estilo para filas pares */
+            background-color: #f9f9f9;
+        }
+
+        .text-deep-ocean {
+            color: #003B46;
+        }
+
+        .bg-deep-ocean {
+            background-color: #003B46;
+        }
+
+        .text-teal-blue {
+            color: #07575B;
+        }
+
+        .bg-teal-blue {
+            background-color: #07575B;
+        }
+
+        .text-aqua-blue {
+            color: #66A5AD;
+        }
+
+        .bg-aqua-blue {
+            background-color: #66A5AD;
+        }
+
+        .text-golden-sand {
+            color: #F7B538;
+        }
+
+        .bg-golden-sand {
+            background-color: #F7B538;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+
+        .section-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .flowchart-step {
+            border: 2px solid #07575B;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            background-color: #C4DFE6;
+            color: #003B46;
+            min-width: 180px;
+        }
+
+        .flowchart-arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: #07575B;
+            margin: 0.5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #07575B;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container.left {
+            left: 0;
+        }
+
+        .timeline-container.right {
+            left: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #F7B538;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-container.right::after {
+            left: -13px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #C4DFE6;
+            position: relative;
+            border-radius: 6px;
+            color: #003B46;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-container.right {
+                left: 0%;
+            }
+
+            .timeline-container.left::after,
+            .timeline-container.right::after {
+                left: 15px;
+            }
+        }
+
+        .styled-logo {
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 2px solid;
+            border-radius: 0.375rem;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+
+        .uco-logo {
+            color: #003B46;
+            border-color: #003B46;
+            background-color: #C4DFE6;
+        }
+
+        .uth-logo {
+            color: #FFFFFF;
+            border-color: #F7B538;
+            background-color: #07575B;
+        }
+
+        .cmas-logo {
+            color: #F7B538;
+            border-color: #F7B538;
+            background-color: #003B46;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center py-12 bg-deep-ocean text-white rounded-lg shadow-xl mb-12"
+            style="background-image: url('photo_team.jpeg'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 600px;  ">
+            <div style="width: 80%; margin: auto; padding: 100px; text-align: center;">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Curso de Buceo Científico CMAS</h1>
+                <!-- <p class="text-xl md:text-2xl mb-6 text-aqua-blue">Técnicas de Buceo y Muestreo Subacuático</p> -->
+                <p class="text-2xl md:text-3xl font-semibold text-golden-sand mb-8">¡Sumérgete en la Ciencia
+                    Subacuática!
+                </p>
+                <div style="background-color: #fdfdfd38;">
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; width: 200px; height: 150px; margin: 0 auto;">
+                        <img src="cmas.svg" alt="cmas_logo" style="height: 80px;">
+                        <!-- <span class="styled-logo cmas-logo">CMAS</span> -->
+                        <img src="uws.avif" alt="uws_logo" style="height: 90px;">
+                        <!-- <span class="styled-logo uco-logo">Utila Water Sports</span> -->
+                    </div>
+
+                    <p class="text-xl font-bold" style="color: #001e24;">Fechas Clave: 25 Junio - 10 Julio, 2025</p>
+                    <p class="text-xl font-bold" style="color: #001a1f;">Inscripción: 25 Abril - 09 Mayo, 2025</p>
+
+                </div>
+
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6 text-center">Una oportunidad única en Buceo
+                    Científico</h2>
+                <p class="text-center text-gray-700 mb-8">La oferta de titulaciones en buceo científico es mínima,
+                    aunque cada vez hay más demanda de dichos profesionales en el sector científico. Este curso,
+                    respaldado por la Confederación Mundial de Actividades Subacuáticas (CMAS), se posiciona como una
+                    referencia a nivel nacional e internacional debido a su riguroso plan de estudios y su enfoque
+                    práctico. Además, integra las metodologías y tecnologías en investigación subacuática más relevante,
+                    asegurando que los egresados adquieran las competencias necesarias para operar de forma segura y
+                    efectiva en entornos marinos.
+                    La acreditación CMAS (CSD) garantiza que los estándares de formación cumplen con los más altos
+                    requisitos de calidad y seguridad, facilitando la movilidad profesional de los buceadores
+                    científicos en proyectos de investigación a nivel global.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-aqua-blue/20 rounded-lg">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">🚀</h3>
+
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">Liderazgo Internacional</h3>
+                        <p class="text-gray-700">Debido a la escasa oferta formativa actual, este curso te posiciona a
+                            la
+                            vanguardia del Buceo Científico.</p>
+                    </div>
+                    <div class="p-4 bg-aqua-blue/20 rounded-lg">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">🌍</h3>
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">Reconocimiento CMAS</h3>
+                        <p class="text-gray-700">Obtén la prestigiosa certificación CMAS Scientific Diver, reconocida
+                            internacionalmente.</p>
+                    </div>
+                    <div class="p-4 bg-aqua-blue/20 rounded-lg">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">🏝️</h3>
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2">Ubicación Privilegiada</h3>
+                        <p class="text-gray-700">Fórmate en Utila, Honduras, corazón del Sistema Arrecifal
+                            Mesoamericano, el segundo más grande del mundo.</p>
+                    </div>
+                </div>
+                <!-- <div class="mt-8 text-center">
+                    <p class="text-5xl font-bold text-golden-sand">1 <span class="text-2xl text-deep-ocean">de los pocos
+                            cursos CMAS CSD en España</span></p>
+                    <p class="text-lg text-gray-600 mt-2">Colaboración pionera entre la Universidad de Córdoba (UCO) y
+                        la Universidad Tecnológica de Honduras (UTH).</p>
+                </div> -->
+            </section>
+
+            <section class="md:col-span-2 section-card"
+                style="background-image: url('gorgonia.jpeg'); background-size: cover;">
+                <div style="background-color: #ffffff54;">
+                    <h2 class="text-3xl font-bold text-deep-ocean mb-6 text-center">Conviértete en un Buceador
+                        Científico
+                        CMAS</h2>
+                    <p class="text-center text-gray-700 mb-8">Este curso te transformará en un Buceador Científico (CMAS
+                        CSD) competente, capaz de desarrollar un trabajo autónomo o en equipo, sin necesidad de
+                        supervisión
+                        y aumentando el rendimiento del equipo de trabajo en proyectos científicos y de conservación
+                        marina.
+                    </p>
+                </div>
+                <div
+                    class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8 justify-items-center items-center mx-auto max-w-xl">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">🔬</span> Muestreo y Monitoreo</h3>
+                        <p>Aprende técnicas avanzadas para recolectar datos cruciales en proyectos científicos.</p>
+                    </div>
+                    <!-- <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">🗺️</span> Exploración y Restauración</h3>
+                        <p>Participa en la exploración y mantenimiento de yacimientos subacuáticos.</p>
+                    </div> -->
+                    <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">⚙️</span> Buceo Técnico Adaptado</h3>
+                        <p>Perfecciona tu técnica para cumplir los estándares del buceo técnico y científico.</p>
+                    </div>
+                    <!-- <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">🆘</span> Emergencias y Rescate</h3>
+                        <p>Domina los procedimientos de emergencia y manejo de accidentes de buceo.</p>
+                    </div> -->
+                    <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">📊</span> Registro de Datos</h3>
+                        <p>Adquiere habilidades en técnicas precisas para el registro y manejo de datos.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-blue mb-2 flex items-center"><span
+                                class="text-2xl mr-2">🌿</span> Buceo Sostenible</h3>
+                        <p>Fomenta prácticas de buceo respetuosas con el medio ambiente marino.</p>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold text-deep-ocean mb-4 text-center">Tu Progresión Formativa:</h3>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div
+                        class="flowchart-step flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
+                        Buceador Certificado<br>(Nivel Requerido B2E-CMAS)
+                        <div class="flowchart-arrow hidden md:block">➡️</div>
+                        <div class="flowchart-arrow md:hidden">⬇️</div>
+                        <div class="flowchart-step">Curso de Buceo Científico CMAS</div>
+                        <div class="flowchart-arrow hidden md:block">➡️</div>
+                        <div class="flowchart-arrow md:hidden">⬇️</div>
+                        <div class="flowchart-step">Buceador Científico<br>CMAS (CSD)</div>
+                    </div>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6">Desglose del Curso</h2>
+                <p class="text-gray-700 mb-4">Una formación integral diseñada para la excelencia:</p>
+                <ul class="space-y-3 text-gray-700 mb-6">
+                    <li><strong><span class="text-teal-blue">🏅 Titulación:</span></strong> CMAS Scientific
+                        Diver(CSD)<br>(TASAS NO INCLUIDAS)</li>
+                    <li><strong><span class="text-teal-blue">🎓 Créditos:</span></strong> 6 ECTS</li>
+                    <li><strong><span class="text-teal-blue">⏳ Duración Total:</span></strong> 16 días (25 Junio - 10
+                        Julio, 2025)</li>
+                    <li><strong><span class="text-teal-blue">🗣️ Idioma:</span></strong> Castellano</li>
+                    <li><strong><span class="text-teal-blue">📍 Lugar:</span></strong> Aula - Utila Water Sports, Utila,
+                        Honduras</li>
+                    <li><strong><span class="text-teal-blue">👥 Tamaño Clase:</span></strong> Mínimo 8, Máximo 16
+                        alumnos (atención personalizada)</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-deep-ocean mb-2">Distribución Horaria:</h3>
+                <div class="chart-container mx-auto">
+                    <canvas id="hoursChart"></canvas>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fechas</th>
+                            <th>Modalidad</th>
+                            <th>Contenidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>25 de junio - 2 de julio</td>
+                            <td>Online</td>
+                            <td>Identificación de especies de flora y fauna, métodos de muestreo</td>
+                        </tr>
+                        <tr>
+                            <td>3 - 10 de julio</td>
+                            <td>Presencial</td>
+                            <td>Sesiones prácticas de muestreo subacuático, coordinación de equipos de buceadores
+                                científicos</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6">Plan de Estudios Detallado</h2>
+                <p class="text-gray-700 mb-6">El programa combina teoría rigurosa con intensa práctica en el campo,
+                    aprovechando el entorno único de Utila.</p>
+                <div class="timeline">
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-lg text-deep-ocean">Fase 1: Fundamentos Teóricos</h3>
+                            <p class="text-sm text-teal-blue">Previo y durante el curso (Briefings y Aula Virtual)</p>
+                            <p>Principios de muestreo, planificación de inmersiones científicas, gestión de emergencias,
+                                uso de equipos especializados, y valor ecológico de Utila.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-lg text-deep-ocean">Fase 2: Prácticas Intensivas en el Mar
+                            </h3>
+                            <p class="text-sm text-teal-blue">25 Junio - 10 Julio (Utila, Honduras)</p>
+                            <p>Inmersiones diarias aplicando técnicas de medición, muestreo de organismos marinos,
+                                construcción y despliegue de transectos y cuadrantes, y técnicas de registro de datos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-lg text-deep-ocean">Fase 3: Trabajo Autónomo y Evaluación</h3>
+                            <p class="text-sm text-teal-blue">Durante y post-fase presencial</p>
+                            <p>Consolidación de conocimientos, elaboración de planes de inmersión, inventario de
+                                especies, presentación de informes de muestreo y examen práctico de técnicas.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-6 text-gray-700">Materiales de estudio y muestreo proporcionados: Guías de identificación,
+                    cintas métricas, cuerdas sumergibles, etiquetas y marcadores subacuáticos.</p>
+            </section>
+
+            <section class="md:col-span-2 section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6 text-center">Conoce a tus Instructores</h2>
+                <p class="text-center text-gray-700 mb-8">Un equipo de profesionales con amplia experiencia en buceo,
+                    docencia e investigación marina te guiará en tu aprendizaje.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center justify-items-center items-start">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow w-full max-w-sm mx-auto">
+                        <img src="alex.jpg" alt="Vicente Raúl Víbora Luna" class="mx-auto" style="height: 280px;">
+
+                        <h3 class="text-xl font-semibold text-teal-blue">Vicente Raúl Víbora Luna</h3>
+                        <p class="text-sm text-gray-600">Instructor Nacional 3 Estrellas FEDAS-CMAS.</p>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow w-full max-w-sm mx-auto">
+                        <img src="alex.jpg" alt="Alejandro Roldán Pérez" class="mx-auto" style="height: 280px;">
+                        <h3 class="text-xl font-semibold text-teal-blue">Alejandro Roldán Pérez</h3>
+                        <p class="text-sm text-gray-600">Máster en Ecología Marina e Instructor Nacional 1 Estrella
+                            FEDAS-CMAS.</p>
+                    </div>
+
+                </div>
+                <p class="text-center mt-4 text-gray-600">Contaremos con profesores adicionales (Alejandro Parras
+                    Torres, Daniel Ortega López, ambos Instructores Nacionales 1 Estrella FEDAS-CMAS) si se alcanza el
+                    cupo de 12 y 15 alumnos respectivamente, para asegurar una ratio profesor-alumno óptima.</p>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6">¿Quién puede Inscribirse?</h2>
+                <p class="text-gray-700 mb-4">Este curso está diseñado para buceadores certificados que deseen
+                    especializar su perfil profesional hacia la ciencia subacuática. Los requisitos de admisión son:</p>
+                <ul class="space-y-2 text-gray-700">
+
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span> <span>Buceador
+                            2 Estrellas FEDAS-CMAS o equivalente.</span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span> <span>Mínimo 40
+                            inmersiones registradas en aguas abiertas.</span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span> <span>Seguro de
+                            accidentes (licencia federativa en vigor de su entidad de buceo).</span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span>
+                        <span>Certificado médico de aptitud (fecha de expedición no superior a 3 meses).</span>
+                    </li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span> <span>Registro
+                            de inmersiones (logbook).</span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2 text-xl mt-1">✅</span>
+                        <span>Profundímetro u ordenador de buceo y boya de señalización.</span>
+                    </li>
+                </ul>
+                <p class="mt-4 text-gray-600">Se valorará positivamente en el CV estudios relacionados con Biología,
+                    Geología, Arqueología o participación en proyectos de estos ámbitos. Toda formación de buceo
+                    adicional será tenida en cuenta.</p>
+                <p class="mt-2 text-sm text-red-600 font-semibold">Importante: Las tasas de expedición de la titulación
+                    "CMAS Scientific Diver" NO están incluidas en el precio del curso y deben ser abonadas aparte por
+                    los alumnos que la soliciten.</p>
+            </section>
+
+            <section class="section-card bg-teal-blue text-white">
+                <h2 class="text-3xl font-bold mb-6 text-center">Invierte en Tu Futuro Científico</h2>
+                <div class="text-center mb-6">
+                    <p class="text-4xl font-bold text-golden-sand">??? €</p>
+                    <p class="text-sm">(Precio total: 2.137,50€ matrícula + 20€ apertura de expediente)</p>
+                </div>
+                <p class="text-center mb-2"><strong>Periodo de Matriculación:</strong> 25 de Abril – 09 de Mayo, 2025
+                </p>
+                <p class="text-center text-sm mb-6">(Plazas limitadas a 16 alumnos. ¡No te quedes fuera!)</p>
+                <div class="text-center">
+                    <a href="mailto:alejandroldanperez@gmail.com"
+                        class="inline-block bg-golden-sand text-deep-ocean font-bold py-3 px-8 rounded-lg hover:bg-yellow-400 transition duration-300 text-lg">¡QUIERO
+                        INSCRIBIRME! (Enlace Próximamente)</a>
+                </div>
+                <p class="text-xs text-center mt-4 opacity-80">El precio del curso cubre la docencia, materiales de
+                    prácticas especificados, y según el estudio de viabilidad económica, también incluye un paquete de
+                    alojamiento, comidas y buceo para los alumnos durante la fase práctica de 7 días en Utila (basado en
+                    un mínimo de 8 alumnos).</p>
+            </section>
+
+            <section class="md:col-span-2 section-card">
+                <h2 class="text-3xl font-bold text-deep-ocean mb-6 text-center">Colaboradores y Acreditación</h2>
+                <p class="text-center text-gray-700 mb-8">Este curso es posible gracias a la colaboración de
+                    instituciones de prestigio y entidades especializadas en el mundo subacuático.</p>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-6">
+                    <div class="text-center">
+                        <img src="uws.avif" alt="uws_logo" style="height: 90px;">
+                    </div>
+                    <div class="text-center">
+                        <img src="cmas.svg" alt="cmas_logo" style="height: 80px;">
+                        <!-- <span class="styled-logo cmas-logo">CMAS</span> -->
+                    </div>
+
+                    <div class="text-center">
+                        <p class="font-semibold text-teal-blue text-lg">Glubel</p>
+                        <p class="text-sm text-gray-600">(Equipo Docente)</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 mt-12 border-t border-gray-300">
+            <!-- <p class="text-gray-600">Para más información, contacta con el Vicerrectorado de Formación Continua,
+                Empleabilidad y Emprendimiento (UCONTINÚA) de la Universidad de Córdoba o la Facultad de Ciencias.</p> -->
+            <p class="text-sm text-gray-500 mt-2">&copy; 2025 Curso Buceo Científico. Todos los derechos
+                reservados.</p>
+            <p class="text-xs text-gray-400 mt-4">Infografía generada con fines ilustrativos basada en la propuesta de
+                curso presentada. Precios y fechas sujetos a confirmación final por la organización.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const ctxHours = document.getElementById('hoursChart');
+        if (ctxHours) {
+            new Chart(ctxHours, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Teóricas Presenciales', 'Prácticas Presenciales', 'Trabajo Autónomo'],
+                    datasets: [{
+                        label: 'Distribución Horaria',
+                        data: [20, 40, 70],
+                        backgroundColor: [
+                            '#07575B',
+                            '#66A5AD',
+                            '#C4DFE6'
+                        ],
+                        borderColor: [
+                            '#003B46',
+                            '#003B46',
+                            '#003B46'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#003B46' }
+                        },
+                        title: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function (tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                        return label.join(' ');
+                                    } else {
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function wrapLabelText(label, maxWidth) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+    </script>
+</body>
+
+</html>
